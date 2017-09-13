@@ -1,21 +1,20 @@
 package agro;
 
+import agro.app.ui.main_menu.controller.MainMenuController;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 
 @SpringBootApplication
 public class SwingApp extends JFrame{
 
-    public SwingApp() {
+   /* public SwingApp() {
         initUI();
-    }
+    }*/
 
-    private void initUI() {
+   /* private void initUI() {
 
         JButton quitButton = new JButton("Quit");
 
@@ -46,16 +45,21 @@ public class SwingApp extends JFrame{
         gl.setVerticalGroup(gl.createSequentialGroup()
                 .addComponent(arg[0])
         );
-    }
+    }*/
 
     public static void main(String[] args) {
 
         ConfigurableApplicationContext ctx = new SpringApplicationBuilder(SwingApp.class)
                 .headless(false).web(false).run(args);
 
-        EventQueue.invokeLater(() -> {
+       /* EventQueue.invokeLater(() -> {
             SwingApp ex = ctx.getBean(SwingApp.class);
             ex.setVisible(true);
-        });
+        });*/
+
+       // LookAndFeelUtils.setWindowsLookAndFeel();
+
+        MainMenuController mainMenuController = ctx.getBean(MainMenuController.class);
+        mainMenuController.prepareAndOpenFrame();
     }
 }
